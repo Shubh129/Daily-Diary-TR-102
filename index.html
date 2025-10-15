@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extreme Daily Diary - TR-102</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            overflow-y: auto;
+            background: linear-gradient(45deg, #6b48ff, #d3a4ff);
+            padding: 20px 0;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/circuit-pattern.png');
+            animation: moveBackground 20s infinite linear;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        @keyframes moveBackground {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .container {
+            background: #000;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(107, 72, 255, 0.5);
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            z-index: 1;
+            color: #fff;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .header img {
+            height: 80px;
+        }
+        .header a {
+            color: #d3a4ff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 10px 20px;
+            background: #6b48ff;
+            border-radius: 25px;
+            transition: background 0.3s;
+        }
+        .header a:hover {
+            background: #552ed6;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 20px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #d3a4ff;
+        }
+        h2, h3 {
+            color: #b794f4;
+            margin: 10px 0;
+        }
+        .section {
+            margin: 40px 0;
+            padding: 20px;
+            background: rgba(107, 72, 255, 0.1);
+            border-radius: 10px;
+        }
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .btn {
+            background: #d3a4ff;
+            color: #000;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            text-decoration: none;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s;
+            min-width: 180px;
+        }
+        .btn:hover {
+            background: #c28bff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(211, 164, 255, 0.4);
+        }
+        .btn.secondary {
+            background: #a366ff;
+            color: #fff;
+        }
+        .days {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+            max-width: 100%;
+        }
+        .day-btn {
+            background: #6b48ff;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        .day-btn:hover {
+            background: #552ed6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(107, 72, 255, 0.4);
+        }
+        .content {
+            display: none;
+            margin-top: 30px;
+            text-align: center;
+            min-height: 600px;
+        }
+        .content.active {
+            display: block;
+        }
+        .pdf-viewer {
+            width: 100%;
+            height: 700px;
+            border: none;
+            border-radius: 10px;
+        }
+        .certificate-img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .footer-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        .footer-btn {
+            background: #d3a4ff;
+            color: #000;
+            text-decoration: none;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            outline: none;
+            transition: all 0.3s;
+            min-width: 150px;
+        }
+        .footer-btn:hover {
+            background: #c28bff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(211, 164, 255, 0.4);
+        }
+        .footer-btn.primary {
+            background: #a366ff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <div class="header">
+            <img src="gndecLogo.png" id="top" alt="College Logo">
+            <img src="PI-LOGO.webp" alt="Company Logo">
+        </div>
+
+        <h1>TR-102 Daily Diary</h1>
+        <h3>By Shubhdeep Lotra, URN 2302673</h3>
+        <h3>Guru Nanak Dev Engineering College</h3>
+        <h2>6 Week Project at PISOFT INFORMATICS PVT. LTD.</h2>
+
+        <!-- Main Buttons Section -->
+        <div class="section">
+            <h3>Main Documents</h3>
+            <div class="buttons">
+                <button class="btn" onclick="showContent('certificate')">Training Certificate</button>
+                <button class="btn " onclick="showContent('report')">Final Report</button>
+            </div>
+        </div>
+
+        <!-- Days Section -->
+        <div class="section">
+            <h3>Daily Diaries</h3>
+            <div class="days">
+                <button class="day-btn" onclick="showDayPDF(1)">Day 1</button>
+                <button class="day-btn" onclick="showDayPDF(2)">Day 2</button>
+                <button class="day-btn" onclick="showDayPDF(3)">Day 3</button>
+                <button class="day-btn" onclick="showDayPDF(4)">Day 4</button>
+                <button class="day-btn" onclick="showDayPDF(5)">Day 5</button>
+                <button class="day-btn" onclick="showDayPDF(6)">Day 6</button>
+                <button class="day-btn" onclick="showDayPDF(7)">Day 7</button>
+                <button class="day-btn" onclick="showDayPDF(8)">Day 8</button>
+                <button class="day-btn" onclick="showDayPDF(9)">Day 9</button>
+                <button class="day-btn" onclick="showDayPDF(10)">Day 10</button>
+                <button class="day-btn" onclick="showDayPDF(11)">Day 11</button>
+                <button class="day-btn" onclick="showDayPDF(12)">Day 12</button>
+                <button class="day-btn" onclick="showDayPDF(13)">Day 13</button>
+                <button class="day-btn" onclick="showDayPDF(14)">Day 14</button>
+                <button class="day-btn" onclick="showDayPDF(15)">Day 15</button>
+                <button class="day-btn" onclick="showDayPDF(16)">Day 16</button>
+                <button class="day-btn" onclick="showDayPDF(17)">Day 17</button>
+                <button class="day-btn" onclick="showDayPDF(18)">Day 18</button>
+                <button class="day-btn" onclick="showDayPDF(19)">Day 19</button>
+                <button class="day-btn" onclick="showDayPDF(20)">Day 20</button>
+                <button class="day-btn" onclick="showDayPDF(21)">Day 21</button>
+                <button class="day-btn" onclick="showDayPDF(22)">Day 22</button>
+                <button class="day-btn" onclick="showDayPDF(23)">Day 23</button>
+                <button class="day-btn" onclick="showDayPDF(24)">Day 24</button>
+
+            </div>
+        </div>
+
+        <!-- Footer Buttons -->
+        <div class="footer-buttons">
+            <button class="btn" onclick="window.open('https://shubh129.github.io/1ST_Website/', '_blank')">Projects</button>
+            <button class="btn"><a href="#top" class="btn">Home</a></button>
+        </div>
+
+        <!-- Content Display Area -->
+        <div id="content" class="content"></div>
+    </div>
+
+    <script>
+    function showContent(type) {
+        const contentDiv = document.getElementById('content');
+        contentDiv.classList.remove('active');
+        setTimeout(() => {
+            if (type === 'certificate') {
+                contentDiv.innerHTML = '<iframe src="https://drive.google.com/file/d/1J7EKrVUDbBTlojT0Pr_6V4Z5k4W7qAwn/preview" class="pdf-viewer" allow="autoplay"></iframe>';
+            } else if (type === 'report') {
+                contentDiv.innerHTML = '<iframe src="https://drive.google.com/file/d/1SRn_BaY6pQ2KxXDugYvvK9JRUKt3_5W4/preview" class="pdf-viewer"></iframe>';
+            } else if (type === 'gallery') {
+                contentDiv.innerHTML = '<p>🖼️ Gallery content coming soon! Photos and screenshots will be displayed here.</p>';
+            }
+            contentDiv.classList.add('active');
+            contentDiv.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
+
+    function showDayPDF(dayNumber) {
+        const contentDiv = document.getElementById('content');
+        contentDiv.classList.remove('active');
+        setTimeout(() => {
+            // Array of unique PDF preview links for each day (replace with your actual links)
+            const pdfLinks = [
+                'https://drive.google.com/file/d/12Z_5exjMdJEeqr60Y1hyPg39RnZ9fbC2/preview', // Day 1
+                'https://drive.google.com/file/d/1vxbKkIdGKFiDsadEb14jXeU_eX5RDXsd/preview', // Day 2
+                'https://drive.google.com/file/d/1YZ4F8Ym9kOA4YYxO5jSVSClmKi3I7JTl/preview', // Day 3
+                'https://drive.google.com/file/d/1F-Jdpy6DCgVlN6mUm-0aQ44yYLnSnm9J/preview', // Day 4
+                'https://drive.google.com/file/d/1A-MGRZ1M3-fKHc3eCAueb2iewW608e5h/preview', // Day 5
+                'https://drive.google.com/file/d/1f-gPOyXeUsrv1Vx79OcFs7Dr0a7UQmum/preview', // Day 6
+                'https://drive.google.com/file/d/1dy4cZCQsvxmgf0wq48GzHVHupN9noWo_/preview', // Day 7
+                'https://drive.google.com/file/d/17M9VP55SovuT-XXHEGTOb3lXGwtkOjOH/preview', // Day 8
+                'https://drive.google.com/file/d/1Rd7I3UQBkHFdUErD-eSgJ31hzEEu3xfM/preview', // Day 9
+                'https://drive.google.com/file/d/1OyazF6Gg3KtSrXnT3El1JjpWGJLLaRAw/preview', // Day 10
+                'https://drive.google.com/file/d/1jNFSDMtzrBpjzVhiSoWWhWwpKu3SAjKh/preview', // Day 11
+                'https://drive.google.com/file/d/1UViOjQI0SQkb-ZruXvNG80mFGnw1Pkro/preview', // Day 12
+                'https://drive.google.com/file/d/1IIysHvoEqnqxEOM_83psoF-iNLPtLCsH/preview', // Day 13
+                'https://drive.google.com/file/d/1AoWdMsQaiqftUpq0WpOGeAwD6uy9MSE3/preview', // Day 14
+                'https://drive.google.com/file/d/1mmzWdUBa_IZ3e3dLTdoMIQjLHtBgxpP7/preview', // Day 15
+                'https://drive.google.com/file/d/1w3eGmOwKTYZin_evzfhMyJUVgy6IAHMM/preview', // Day 16
+                'https://drive.google.com/file/d/1hrbz4sLddIBg89RtrS81APJFw5Is21F-/preview', // Day 17
+                'https://drive.google.com/file/d/1jaod5uL4KnnITVWryxSpIniXYvsMWthE/preview', // Day 18
+                'https://drive.google.com/file/d/1lL_unVWbiNElm9uCARElRZrR8GAJC1e8/preview', // Day 19
+                'https://drive.google.com/file/d/1N83xEBq1TB2GG0UocRB3uIvQKWTA7MYW/preview', // Day 20
+                'https://drive.google.com/file/d/1U4Nn6sxa6siwzcHZqWLVB0dESH7BprDM/preview', // Day 21
+                'https://drive.google.com/file/d/1nmB61CrUlII7Ovsk6YFQ1ohRTm032CAW/preview', // Day 22
+                'https://drive.google.com/file/d/17N0J1NPMHRlSFxikbtKHADzlfL35fLmp/preview', // Day 23
+                'https://drive.google.com/file/d/18Stt9vdzDMO2MkrXYR6JGV60qJAWidZK/preview'  // Day 24
+                // Add more links up to Day 42 if needed, using the same format
+            ];
+            const pdfUrl = pdfLinks[dayNumber - 1] || 'https://drive.google.com/file/d/12Z_5exjMdJEeqr60Y1hyPg39RnZ9fbC2/preview'; // Fallback link
+            contentDiv.innerHTML = `<iframe src="${pdfUrl}" class="pdf-viewer" allow="autoplay"></iframe>`;
+            contentDiv.classList.add('active');
+            contentDiv.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
+</script>
+</body>
+</html>
